@@ -1,0 +1,84 @@
+import csv
+import statistics
+
+
+def read_data():
+    data = []
+
+    with open('sales.csv', 'r') as sales_file:
+        spreadsheet = csv.DictReader(sales_file)
+        for row in spreadsheet:
+            data.append(row)
+
+    return data
+
+
+def read_data1():
+
+    with open('sales.csv', 'r') as sales_file:
+        spreadsheet = csv.DictReader(sales_file)
+        for row in spreadsheet:
+            print(row['year'], row['month'], row['sales'])
+
+
+read_data1()
+
+
+def sales():
+    data = read_data()
+
+    sales1 = []
+    for row in data:
+        sale = int(row['sales'])
+        sales1.append(sale)
+
+    total = sum(sales1)
+    print('Total of sales: £{}'.format(total))
+
+
+sales()
+
+
+def averages():
+    data = read_data()
+
+    month_avg = []
+    for row in data:
+        monthly_sales = int(row['sales'])
+        month_avg.append(monthly_sales)
+
+    avg = statistics.mean(month_avg)
+    print('Average of sales across 12 months: £{:.2f}'.format(avg))
+
+
+averages()
+
+
+def highest():
+    data = read_data()
+
+    highest1 = []
+    for row in data:
+        monthly_sales = int(row['sales'])
+        highest1.append(monthly_sales)
+
+    high = max(highest1)
+    print('The most sales in 1 month: £{}'.format(high))
+
+
+highest()
+
+
+def lowest():
+    data = read_data()
+
+    lowest1 = []
+    for row in data:
+        monthly_sales = int(row['sales'])
+        lowest1.append(monthly_sales)
+
+    low = min(lowest1)
+    print('The least sales in 1 month: £{}'.format(low))
+
+
+lowest()
